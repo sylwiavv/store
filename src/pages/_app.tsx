@@ -1,7 +1,6 @@
-import '@/styles/globals.css'
+import '../styles/global.css'
 import type { AppProps } from 'next/app'
-// import '../styles/tailwind.css';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <div><p className="text-3xl font-bold underline text-orange-600">loo</p><Component {...pageProps} /></div>
 }
