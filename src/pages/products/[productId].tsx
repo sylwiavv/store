@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { StoreApiResponse } from "@/pages/products";
 import { ProductListItem } from "@/components/ProductListItem";
+import Link from "next/link";
 
 export type InferGetStaticPathsType<T> = T extends () => Promise<{
         paths: Array<{ params: infer R }>;
@@ -16,14 +17,19 @@ const ProductIdPage = ({ data}: InferGetStaticPropsType<typeof getStaticProps>) 
         return <div>Coś poszło nie tak</div>;
     }
     return (
-        <ProductListItem
-            data={{
-                title: data.title,
-                description: data.description,
-                image: data.image,
-                thumbnailAlt: data.title,
-            }}
-        />
+        <>
+            <Link href={`/products`}>Wróć na stronę główną</Link>
+            <ProductListItem
+                data={{
+                    id: data.id,
+                    title: data.title,
+                    description: data.description,
+                    image: data.image,
+                    thumbnailAlt: data.title,
+                }}
+            />
+        </>
+
     );
 };
 

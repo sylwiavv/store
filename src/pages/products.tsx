@@ -1,5 +1,4 @@
 import { InferGetStaticPropsType } from "next";
-import { ProductListItem} from "@/components/ProductListItem";
 import {Product} from "@/components/Product";
 
 export interface StoreApiResponse {
@@ -22,19 +21,14 @@ export interface ProductDetails {
     thumbnailAlt: string,
 }
 
-interface ProductProps {
-    data: ProductDetails
-}
-
-type ProductType = Pick<StoreApiResponse, "title" | "description">
-
 const ProductPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-7/12 m-auto">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-2/3 m-auto">
             {data.map((product) => {
                 return (
                     <li key={product.id} className={"shadow-xl border-2"}>
                         <Product data={{
+                            id: product.id,
                             title: product.title,
                             image: product.image,
                             thumbnailAlt: product.thumbnailAlt
