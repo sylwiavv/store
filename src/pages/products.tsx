@@ -6,9 +6,14 @@ export interface StoreApiResponse {
     title: string,
     description: string
     category: string,
-    image: string
+    image: string,
+    longDescription: string,
     thumbnailUrl: string,
     thumbnailAlt: string,
+    // rating: {
+    //     rate: number,
+    //     count: number
+    // }
 }
 
 export interface ProductDetails {
@@ -19,6 +24,11 @@ export interface ProductDetails {
     image: string
     thumbnailUrl: string,
     thumbnailAlt: string,
+    longDescription: string
+    // rating: {
+    //     rate: number,
+    //     count: number
+    // }
 }
 
 const ProductPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -32,6 +42,7 @@ const ProductPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) =
                             title: product.title,
                             image: product.image,
                             thumbnailAlt: product.thumbnailAlt
+                            // rating: product.rating.rate
                         }} />
                     </li>
                 );
@@ -43,7 +54,7 @@ const ProductPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) =
 export default ProductPage;
 
 export const getStaticProps = async () => {
-    const res = await fetch(`https://fakestoreapi.com/products/`);
+    const res = await fetch(`https://naszsklep-api.vercel.app/api/products`);
     const data: StoreApiResponse[] = await res.json();
 
     return {

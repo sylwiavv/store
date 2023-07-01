@@ -2,8 +2,13 @@ import React from 'react';
 import {StoreApiResponse} from "@/pages/products";
 import Link from "next/link";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import Head from "next/head";
 
 type ProductDetails = Pick<StoreApiResponse, "title" | "image" | "thumbnailAlt" | "id">
+
+// import React from 'react'
+
 
 interface ProductsListItemProps {
     data: ProductDetails
