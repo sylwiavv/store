@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from "next";
 import {Product} from "@/components/Product";
+import {MarkdownResultType} from "../../types";
 
 export interface StoreApiResponse {
     id: number,
@@ -7,7 +8,7 @@ export interface StoreApiResponse {
     description: string
     category: string,
     image: string,
-    longDescription: string,
+    longDescription: MarkdownResultType,
     thumbnailUrl: string,
     thumbnailAlt: string,
     // rating: {
@@ -24,7 +25,7 @@ export interface ProductDetails {
     image: string
     thumbnailUrl: string,
     thumbnailAlt: string,
-    longDescription: string
+    longDescription: MarkdownResultType,
     // rating: {
     //     rate: number,
     //     count: number

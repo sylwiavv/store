@@ -3,7 +3,7 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { StoreApiResponse } from "@/pages/products";
 import { ProductListItem } from "@/components/ProductListItem";
 import Link from "next/link";
-import Head from "next/head";
+import { serialize } from 'next-mdx-remote/serialize'
 import React from "react";
 import { NextSeo } from "next-seo";
 
@@ -90,9 +90,21 @@ export const getStaticProps = async ({ params, }: GetStaticPropsContext<InferGet
     );
     const data: StoreApiResponse | null = await res.json();
 
+    if (!data) {
+        return {
+            props: {},
+            notFound: true,
+        }
+    }
+
+    const compiledMarkDown = await serialize(data.longDescription)
+
     return {
         props: {
-            data,
+            data: {
+                ...data,
+                longDescription: compiledMarkDown
+            },
         },
     };
 };

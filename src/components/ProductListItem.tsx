@@ -1,7 +1,8 @@
 import React from 'react';
 import {ProductDetails} from "@/pages/products";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
+import {ReactMarkDownLink} from "@/components/ReactMarkDownLink";
+import {MDXRemote} from "next-mdx-remote";
 
 type ProductsListItem = Pick<ProductDetails, "id" | "title" | "description" |"image" | "thumbnailAlt" | "longDescription">
 
@@ -19,7 +20,7 @@ export const ProductListItem = ({data} : ProductsListItemProps) => {
             </div>
             <div>{description}</div>
             <article className="prose lg:prose-xl p-4">
-                <ReactMarkdown>{longDescription}</ReactMarkdown>
+                <MDXRemote {...data.longDescription} />
             </article>
         </div>
     );
